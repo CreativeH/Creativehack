@@ -11,7 +11,6 @@ class Usuarios(models.Model):
     tel = models.IntegerField(null=True, blank=True)
     fecha = models.DateField(auto_now=False, auto_now_add=False)
     image = models.ImageField(upload_to="img/img_usr", null=True, blank=True)
-    usr2 = models.ManyToManyField('self')
 
     def get_image(self):
 
@@ -24,7 +23,9 @@ class Usuarios(models.Model):
 
 class Dispositivos(models.Model):
     """docstring for telefono."""
-    fecha = models.CharField(max_length=30)
+
+    owner = models.ForeignKey(Usuarios, null=True, blank=True)
+    Nombre = models.CharField(max_length=30)
 
 
 class Alarma(models.Model):
